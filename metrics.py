@@ -154,7 +154,17 @@ def fetch_and_calculate_metrics(start_date, end_date):
     output_dir = "output"
     os.makedirs(output_dir, exist_ok=True)
     output_filename = f"{output_dir}/monthly_team_metrics_{start_date}_to_{end_date}.csv"
-    team_stats.to_csv(output_filename, index=False)
+    # Custom CSV headers
+    csv_headers = [
+        "Team",
+        "Total PRs",
+        "Mrg PRs",
+        "Total Add",
+        "Total Del",
+        "Mg R %",
+        "Avg Cyc T (d)"
+    ]
+    team_stats.to_csv(output_filename, index=False, header=csv_headers)
     print("\n--- FINAL REPORT ---")
     print(team_stats.to_string())
     print(f"\nReport successfully saved to {output_filename}")
